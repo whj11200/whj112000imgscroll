@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Animation Demo</title>
+    <style>
+        body {
+            overflow-x: hidden;
+            height: 600px;
+        }
+       #box {
+        position: absolute;
+        top: 50%;
+
+        left: 50%;
+        
+        
+        
+        transition: all 0.5s ease;
+      }
+    </style>
+</head>
+<body>
+    
+
+    <img src="imges/Doom.jpg" id="box" onwheel="zoomImage(event)"></img>
+    <script>
+    function zoomImage(event) {
+      var img = document.getElementById("box");
+      var currWidth = img.clientWidth;
+      var currHeight = img.clientHeight;
+      var delta = event.deltaY > 0 ? -1:1;
+    
+      // resize the image
+      img.style.width = (currWidth + (30 * delta)) + "px";
+      img.style.height = (currHeight + (30 * delta)) + "px";
+    }
+
+    // add script for scroll zooming
+    document.addEventListener("wheel", function(event) {
+      var delta = event.deltaY || event.detail || event.wheelDelta;
+      var img = document.getElementById("box");
+      var currWidth = img.clientWidth;
+      var currHeight = img.clientHeight;
+      delta = Math.max(-1, Math.min(1, delta));
+    
+      // resize the image
+      img.style.width = (currWidth + (30 * delta)) + "px";
+      img.style.height = (currHeight + (30 * delta)) + "px";
+      event.preventDefault();
+    });
+    </script>
+    
+    
+</body>
+</html> 
